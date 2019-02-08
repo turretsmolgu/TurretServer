@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TESTS</title>
+</head>
+<body>
+    <h1 onclick="mclick()">TESTS!!!!!!!!</h1>
+<script>
+var socket = new WebSocket(
+        'ws://' + window.location.host +
+        '/camera/');
+console.log(socket);
+socket.onopen = (e)=>{
+    console.log('connect');
+    console.log(e);
+};
+socket.onmessage = (mes)=>{
+  console.log(mes);
+};
+socket.onclose = ()=>{
+    console.log('closed');
+};
+var mclick = function () {
+    console.log('clicked');
+    socket.send('you');
+}
+</script>
+</body>
+</html>

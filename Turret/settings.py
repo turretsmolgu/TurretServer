@@ -25,7 +25,7 @@ SECRET_KEY = '?'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['172.16.98.100', '192.168.2.51']
 
 
 # Application definition
@@ -37,8 +37,41 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'TurretServerApp.apps.TurretserverappConfig',
+    # 'asgiref',
+    'channels',
+    'TurretServerApp'
 ]
+
+# ASGI_APPLICATION = 'Turret.routing.application'
+# CHANNEL_LAYERS = {
+#     'default': {
+#         'BACKEND': 'channels_redis.core.RedisChannelLayer',
+#         'CONFIG': {
+#             "hosts": [('192.168.2.51', 6379)],
+#         },
+#     },
+# }
+##### Channels-specific settings
+
+# redis_host = os.environ.get('REDIS_HOST', 'localhost')
+
+# Channel layer definitions
+# http://channels.readthedocs.io/en/latest/topics/channel_layers.html
+
+
+# CHANNEL_LAYERS = {
+#     "default": {
+#         # This example app uses the Redis channel layer implementation channels_redis
+#         "BACKEND": "asgi_redis.RedisChannelLayer",
+#         "CONFIG": {
+#             "hosts": [(redis_host, 6379)],
+#         },
+#     },
+# }
+
+# ASGI_APPLICATION should be set to your outermost router
+ASGI_APPLICATION = 'Turret.routing.application'
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
